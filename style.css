@@ -52,6 +52,7 @@ select, #value-currency {
     margin-bottom: 10px;
     padding: 5px;
     cursor: pointer;
+    padding-left: 10px;
 }
 
 #value-currency {
