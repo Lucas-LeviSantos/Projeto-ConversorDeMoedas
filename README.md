@@ -1,4 +1,4 @@
-<h1>Projeto Mario Bros</h1>
+<h1>Conversor de Moedas</h1>
 <br>
 <p>Esse é mais um projeto que aprendi no <a href="https://github.com/rodolfomori-devclub">DevClub</a>. Ele é um conversor de moedas bem simples, permite converter o Real, Dólar, Euro, Libra Esterlina e Bitcoin. </p>
 <br>
