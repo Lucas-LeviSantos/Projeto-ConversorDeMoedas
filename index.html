@@ -18,18 +18,25 @@
     <main>
         <label>
             Converter <b>de</b>
-            <select>
-                <option>R$ Real brasileiro</option>
-            </select>
-        </label>
-
-        <label>
-            Converter <b>para</b>
-            <select id="currency-select">
+            <select id="convert-from">
+                <option value="real">R$ Real brasileiro</option>
                 <option value="dolar">US$ Dólar americano</option>
                 <option value="euro">€ Euro</option>
                 <option value="libra">£ Libra</option>
                 <option value="bitcoin">₿ Bitcoin</option>
+            </select>
+        </label>
+
+        <input id="icone-trocar" type="image" src="./assets/icone.png">
+
+        <label>
+            Converter <b>para</b>
+            <select id="currency-select-convert">
+                <option value="dolar">US$ Dólar americano</option>
+                <option value="euro">€ Euro</option>
+                <option value="libra">£ Libra Esterlina</option>
+                <option value="bitcoin">₿ Bitcoin</option>
+                <option value="real">R$ Real brasileiro</option>
             </select>
         </label>
 
@@ -42,16 +49,16 @@
 
         <section>
             <div>
-                <img src="./assets/Brasil.png" alt="Logo-moeda-a-converter">
-                <p class="moeda">Real</p>
+                <img class="bandeira-1" src="./assets/Brasil.png" alt="Logo-moeda-a-converter">
+                <p id="changeText-1" class="moeda">Real</p>
                 <p id="moeda-a-converter" class="valor-da-moeda">R$ 0,00</p>
             </div>
 
             <img id="arrow" src="./assets/Vector.png" alt="Seta-para-baixo">
 
             <div>
-                <img class="bandeira" src="./assets/EUA.png" alt="Logo-moeda-convertida">
-                <p class="moeda" id="changeText">Dólar</p>
+                <img class="bandeira-2" src="./assets/EUA.png" alt="Logo-moeda-convertida">
+                <p class="moeda" id="changeText-2">Dólar</p>
                 <p id="moeda-convertida" class="valor-da-moeda">$ 0.00</p>
             </div>
         </section>

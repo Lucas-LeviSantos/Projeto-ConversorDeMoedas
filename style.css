@@ -26,6 +26,13 @@ main {
     padding: 44px 24px 23px;
 }
 
+#icone-trocar{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    margin: 0 auto -2px;
+}
+
 label {
     color: #777777;
     font-size: 14px;
