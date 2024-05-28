@@ -11,8 +11,6 @@ async function convertValue() {
 
     const data = await fetch("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,GBP-BRL,BTC-BRL", {method: "GET"}).then(response => response.json())
 
-    console.log(data)
-
     const realDolar = data.USDBRL.high
     const realEuro = data.EURBRL.high
     const realLibra = data.GBPBRL.high
