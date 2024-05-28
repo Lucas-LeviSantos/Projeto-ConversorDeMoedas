@@ -4,35 +4,38 @@ const currencyConvertFrom = document.querySelector("#convert-from")
 const inputCurrencyValue = document.querySelector("#value-currency")
 const iconRevert = document.getElementById("icone-trocar")
 
-function convertValue() {
+async function convertValue() {
     const inputCurrencyValue = document.querySelector("#value-currency").value
     const currencyToConvert = document.querySelector("#moeda-a-converter")
     const currencyConverted = document.querySelector("#moeda-convertida")
 
+    const data = await fetch("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,GBP-BRL,BTC-BRL", {method: "GET"}).then(response => response.json())
 
-    const realDolar = 0.1943
-    const realEuro = 0.1799
-    const realLibra = 0.1548
-    const realBitcoin = 0.0000032
+    console.log(data)
+
+    const realDolar = data.USDBRL.high
+    const realEuro = data.EURBRL.high
+    const realLibra = data.GBPBRL.high
+    const realBitcoin = data.BTCBRL.high
 
     let convertedValue
     switch (currencyConvertFrom.value) {
         case "real":
             switch (currencySelectConvert.value) {
                 case "dolar":
-                    convertedValue = inputCurrencyValue * realDolar
+                    convertedValue = inputCurrencyValue / realDolar
                     break;
 
                 case "euro":
-                    convertedValue = inputCurrencyValue * realEuro
+                    convertedValue = inputCurrencyValue / realEuro
                     break;
 
                 case "libra":
-                    convertedValue = inputCurrencyValue * realLibra
+                    convertedValue = inputCurrencyValue / realLibra
                     break;
 
                 case "bitcoin":
-                    convertedValue = inputCurrencyValue * realBitcoin
+                    convertedValue = inputCurrencyValue / realBitcoin
                     break;
 
                 default:
@@ -44,19 +47,19 @@ function convertValue() {
         case "dolar":
             switch (currencySelectConvert.value) {
                 case "real":
-                    convertedValue = inputCurrencyValue / realDolar
+                    convertedValue = inputCurrencyValue * realDolar
                     break;
 
                 case "euro":
-                    convertedValue = inputCurrencyValue * (realEuro / realDolar)
+                    convertedValue = inputCurrencyValue * ( realDolar / realEuro )
                     break;
 
                 case "libra":
-                    convertedValue = inputCurrencyValue * (realLibra / realDolar)
+                    convertedValue = inputCurrencyValue * (realDolar / realLibra)
                     break;
 
                 case "bitcoin":
-                    convertedValue = inputCurrencyValue * (realBitcoin / realDolar)
+                    convertedValue = inputCurrencyValue * (realDolar / realBitcoin)
                     break;
 
                 default:
@@ -68,19 +71,19 @@ function convertValue() {
         case "euro":
             switch (currencySelectConvert.value) {
                 case "real":
-                    convertedValue = inputCurrencyValue / realEuro
+                    convertedValue = inputCurrencyValue * realEuro
                     break;
 
                 case "dolar":
-                    convertedValue = inputCurrencyValue * (realDolar / realEuro)
+                    convertedValue = inputCurrencyValue * (realEuro / realDolar)
                     break;
 
                 case "libra":
-                    convertedValue = inputCurrencyValue * (realLibra / realEuro)
+                    convertedValue = inputCurrencyValue * (realEuro / realLibra)
                     break;
 
                 case "bitcoin":
-                    convertedValue = inputCurrencyValue * (realBitcoin / realEuro)
+                    convertedValue = inputCurrencyValue * (realEuro / realBitcoin)
                     break;
 
                 default:
@@ -92,19 +95,19 @@ function convertValue() {
         case "libra":
             switch (currencySelectConvert.value) {
                 case "real":
-                    convertedValue = inputCurrencyValue / realLibra
+                    convertedValue = inputCurrencyValue * realLibra
                     break;
 
                 case "dolar":
-                    convertedValue = inputCurrencyValue * (realDolar / realLibra)
+                    convertedValue = inputCurrencyValue * (realLibra / realDolar)
                     break;
 
                 case "euro":
-                    convertedValue = inputCurrencyValue * (realEuro / realLibra)
+                    convertedValue = inputCurrencyValue * (realLibra / realEuro)
                     break;
 
                 case "bitcoin":
-                    convertedValue = inputCurrencyValue * (realBitcoin / realLibra)
+                    convertedValue = inputCurrencyValue * (realLibra / realBitcoin)
                     break;
 
                 default:
@@ -113,30 +116,30 @@ function convertValue() {
             }
             break;
 
-            case "bitcoin":
-                switch (currencySelectConvert.value) {
-                    case "real":
-                        convertedValue = inputCurrencyValue / realBitcoin
-                        break;
+        case "bitcoin":
+            switch (currencySelectConvert.value) {
+                case "real":
+                    convertedValue = inputCurrencyValue * realBitcoin
+                    break;
 
-                    case "dolar":
-                            convertedValue = inputCurrencyValue * (realDolar/realBitcoin)
-                        break;
-                    
-                    case "libra":
-                        convertedValue = inputCurrencyValue * (realLibra/realBitcoin)
-                        break;
+                case "dolar":
+                    convertedValue = inputCurrencyValue * (realBitcoin / realDolar)
+                    break;
 
-                    case "euro":
-                        convertedValue = inputCurrencyValue * (realEuro/realBitcoin)
-                        break;
-                    
-                    default:
-                        convertedValue = inputCurrencyValue
-                        break;
-                }
-                break;
-                
+                case "libra":
+                    convertedValue = inputCurrencyValue * (realBitcoin / realLibra)
+                    break;
+
+                case "euro":
+                    convertedValue = inputCurrencyValue * (realBitcoin / realEuro)
+                    break;
+
+                default:
+                    convertedValue = inputCurrencyValue
+                    break;
+            }
+            break;
+
         default:
             convertedValue = inputCurrencyValue
             break;
@@ -278,12 +281,12 @@ function inputFocus(event) {
     this.select();
 }
 function pressEnter(event) {
-    if (event.key === "Enter"){
+    if (event.key === "Enter") {
         buttonConvert.click();
     }
 }
 
-function iconClick(){
+function iconClick() {
     let currencySelect1 = document.getElementById("convert-from")
     let currencySelect2 = document.getElementById("currency-select-convert")
     let temp = currencySelect1.value
